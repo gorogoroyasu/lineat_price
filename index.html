@@ -9,7 +9,7 @@
         <div id="app">
             <div>タイプ</div>
             <div>
-                <select v-model="selected">
+                <select v-model="selected" v-on:change="calc_price">
                     <option>スタンダード</option>
                     <option>ライト</option>
                     <option>フリー</option>
