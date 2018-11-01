@@ -17,8 +17,7 @@
             </div>
             <div>Message数</div>
             <input v-model="message_count" v-on:keyup="calc_price" placeholder="10000">
-            <p>Message is: {{ message_count }}</p>
-            <p>Price: {{price}}円</p>
+            <p>Price: ￥{{price}}-</p>
         </div>
         <script>
             var vm = new Vue({
