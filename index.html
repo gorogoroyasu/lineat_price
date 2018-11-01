@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="line price checker" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>line のお値段</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>タイプ</div>
+            <div>
+                <select v-model="selected">
+                    <option>スタンダード</option>
+                    <option>ライト</option>
+                    <option>フリー</option>
+                </select>
+            </div>
+            <div>Message数</div>
+            <input v-model="message_count" v-on:keyup="calc_price" placeholder="10000">
+            <p>Message is: {{ message_count }}</p>
+            <p>Price: {{price}}</p>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    message_count: '',
+                    selected: "",
+                    price: ""
+                },
+                methods: {
+                    calc_price: function (event) {
+                        if (this.selected == "フリー" && this.price >= 1000) {
+                            this.price = "cannot send it"
+                            return
+                        }
+                        if (this.selected == "ライト") {
+                            this.price = 5000
+                            if (this.message_count >= 15000) {
+                                this.price += (this.message_count - 15000) * 5
+                            }
+                            return
+                        }
+                        if (this.price >= 1000001) {
+                            this.price = "the price is not shown.."
+                            return
+                        }
+                        this.price = 15000
+                        let mc = this.message_count
+                        if ((mc - 45000) <= 0) {
+                            return
+                        }
+                        mc -= 45000
+                        if ((mc - 50000) <= 0) {
+                            this.price += mc * 3.0
+                            return
+                        } else {
+                            this.price += 50000 * 3.0
+                        }
+                        // 50000 - 100000
+                        mc -= 50000
+                        if ((mc - 50000) <= 0) {
+                            this.price += mc * 2.8
+                            return
+                        } else {
+                            this.price += 50000 * 2.8
+                        }
+
+                        mc -= 50000
+                        l = [2.6, 2.4, 2.2, 2.0, 1.9, 1.8, 1.7, 1.6, 1.5]
+                        for (var i in l) {
+                            if ((mc - 100000) <= 0) {
+                                this.price += mc * i
+                                return
+                            } else {
+                                mc -= 100000
+                                this.price = 100000 * i
+                            }
+                        }
+                    },
+
+                }
+            })
+        </script>
+    </body>
+</html>
