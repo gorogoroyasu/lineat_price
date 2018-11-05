@@ -22,7 +22,6 @@
                 <td>{{lprice}}</td>
                 <td>{{sprice}}</td>
             </table>
-            <p>Price: ￥{{price}}-</p>
         </div>
         <script>
             var vm = new Vue({
@@ -36,11 +35,13 @@
                 },
                 methods: {
                     calc_price: function (event) {
-                        messages = this.message_count
+                        messages = Number(this.message_count)
+                        console.log(messages);
                         if (messages > 1000000) {
                             this.fprice = "価格が公開されていません"
                             this.lprice = "価格が公開されていません"
                             this.sprice = "価格が公開されていません"
+                            return
                         }
                         // fprice
                         if (messages > 1000) {
