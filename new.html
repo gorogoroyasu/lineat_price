@@ -37,6 +37,11 @@
                 methods: {
                     calc_price: function (event) {
                         messages = this.message_count
+                        if (messages > 1000000) {
+                            this.fprice = "価格が公開されていません"
+                            this.lprice = "価格が公開されていません"
+                            this.sprice = "価格が公開されていません"
+                        }
                         // fprice
                         if (messages > 1000) {
                             this.fprice = "送れません"
