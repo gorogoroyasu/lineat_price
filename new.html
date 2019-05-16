@@ -84,11 +84,11 @@
                         l = [2.6, 2.4, 2.2, 2.0, 1.9, 1.8, 1.7, 1.6, 1.5]
                         for (var i in l) {
                             if ((mc - 100000) <= 0) {
-                                this.sprice += mc * i
+                                this.sprice += mc * l[i]
                                 return
                             } else {
                                 mc -= 100000
-                                this.sprice = 100000 * i
+                                this.sprice = 100000 * l[i]
                             }
                         }
                     },
